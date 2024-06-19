@@ -1,21 +1,33 @@
-version: '3'
-
 services:
 ###> doctrine/doctrine-bundle ###
   database:
+    container_name: database_adci
     image: postgres:${POSTGRES_VERSION:-14}-alpine
+    env_file:
+      - .env
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
+      POSTGRES_DB: ${POSTGRES_DB:-adci}
       # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-adci}
+      POSTGRES_USER: ${POSTGRES_USER:-adci}
+    ports:
+      - "${POSTGRES_PORT}:5432"
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
+      - adci-db-data:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "8080:80"
+
 volumes:
 ###> doctrine/doctrine-bundle ###
-  db-data:
+  adci-db-data:
 ###< doctrine/doctrine-bundle ###

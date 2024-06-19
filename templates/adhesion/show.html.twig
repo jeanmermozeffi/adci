@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<title>Adhesion</title>
+
+{% block body %}
+    <h1>Adhesion</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ adhesion.id }}</td>
+            </tr>
+            <tr>
+                <th>AdhereADCI</th>
+                <td>{{ adhesion.adhereADCI ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Zone</th>
+                <td>{{ adhesion.zone }}</td>
+            </tr>
+            <tr>
+                <th>NomEtPrenoms</th>
+                <td>{{ adhesion.nomEtPrenoms }}</td>
+            </tr>
+            <tr>
+                <th>DateDeNaissance</th>
+                <td>{{ adhesion.dateDeNaissance ? adhesion.dateDeNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>LieuDeNaissance</th>
+                <td>{{ adhesion.lieuDeNaissance }}</td>
+            </tr>
+            <tr>
+                <th>InscritSurListeElectorale</th>
+                <td>{{ adhesion.inscritSurListeElectorale ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>LieuDeVote</th>
+                <td>{{ adhesion.lieuDeVote }}</td>
+            </tr>
+            <tr>
+                <th>NumeroCarteElecteur</th>
+                <td>{{ adhesion.numeroCarteElecteur }}</td>
+            </tr>
+            <tr>
+                <th>LieuDeResidenceActuelle</th>
+                <td>{{ adhesion.lieuDeResidenceActuelle }}</td>
+            </tr>
+            <tr>
+                <th>Departement</th>
+                <td>{{ adhesion.departement }}</td>
+            </tr>
+            <tr>
+                <th>Region</th>
+                <td>{{ adhesion.region }}</td>
+            </tr>
+            <tr>
+                <th>NaturePieceIdentite</th>
+                <td>{{ adhesion.naturePieceIdentite }}</td>
+            </tr>
+            <tr>
+                <th>NumeroPieceIdentite</th>
+                <td>{{ adhesion.numeroPieceIdentite }}</td>
+            </tr>
+            <tr>
+                <th>NumeroExtraitActeNaissance</th>
+                <td>{{ adhesion.numeroExtraitActeNaissance }}</td>
+            </tr>
+            <tr>
+                <th>Profession</th>
+                <td>{{ adhesion.profession }}</td>
+            </tr>
+            <tr>
+                <th>ContactsCellulaires</th>
+                <td>{{ adhesion.contactsCellulaires }}</td>
+            </tr>
+            <tr>
+                <th>AdresseElectronique</th>
+                <td>{{ adhesion.adresseElectronique }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_adhesion_index') }}">back to list</a>
+
+    <a href="{{ path('app_adhesion_edit', {'id': adhesion.id}) }}">edit</a>
+
+    {{ include('adhesion/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<title>Adhesion index</title>
+
+{% block body %}
+    <h1>Adhesion index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>AdhereADCI</th>
+                <th>Zone</th>
+                <th>NomEtPrenoms</th>
+                <th>DateDeNaissance</th>
+                <th>LieuDeNaissance</th>
+                <th>InscritSurListeElectorale</th>
+                <th>LieuDeVote</th>
+                <th>NumeroCarteElecteur</th>
+                <th>LieuDeResidenceActuelle</th>
+                <th>Departement</th>
+                <th>Region</th>
+                <th>NaturePieceIdentite</th>
+                <th>NumeroPieceIdentite</th>
+                <th>NumeroExtraitActeNaissance</th>
+                <th>Profession</th>
+                <th>ContactsCellulaires</th>
+                <th>AdresseElectronique</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for adhesion in adhesions %}
+            <tr>
+                <td>{{ adhesion.id }}</td>
+                <td>{{ adhesion.adhereADCI ? 'Yes' : 'No' }}</td>
+                <td>{{ adhesion.zone }}</td>
+                <td>{{ adhesion.nomEtPrenoms }}</td>
+                <td>{{ adhesion.dateDeNaissance ? adhesion.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ adhesion.lieuDeNaissance }}</td>
+                <td>{{ adhesion.inscritSurListeElectorale ? 'Yes' : 'No' }}</td>
+                <td>{{ adhesion.lieuDeVote }}</td>
+                <td>{{ adhesion.numeroCarteElecteur }}</td>
+                <td>{{ adhesion.lieuDeResidenceActuelle }}</td>
+                <td>{{ adhesion.departement }}</td>
+                <td>{{ adhesion.region }}</td>
+                <td>{{ adhesion.naturePieceIdentite }}</td>
+                <td>{{ adhesion.numeroPieceIdentite }}</td>
+                <td>{{ adhesion.numeroExtraitActeNaissance }}</td>
+                <td>{{ adhesion.profession }}</td>
+                <td>{{ adhesion.contactsCellulaires }}</td>
+                <td>{{ adhesion.adresseElectronique }}</td>
+                <td>
+                    <a href="{{ path('app_adhesion_show', {'id': adhesion.id}) }}">show</a>
+                    <a href="{{ path('app_adhesion_edit', {'id': adhesion.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="19">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_adhesion_new') }}">Create new</a>
+{% endblock %}
