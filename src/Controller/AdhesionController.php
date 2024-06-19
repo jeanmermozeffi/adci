@@ -10,13 +10,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\Bootstrap\DefaultLayoutController;
 
 #[Route('/adhesion')]
-class AdhesionController extends AbstractController
+class AdhesionController extends DefaultLayoutController
 {
     #[Route('/', name: 'app_adhesion_index', methods: ['GET'])]
     public function index(AdhesionRepository $adhesionRepository): Response
     {
+         # Include vendors and javascript files for dashboard widgets
+        $this->theme->addVendors(['amcharts', 'amcharts-maps', 'amcharts-stock']);
+        
         return $this->render('adhesion/index.html.twig', [
             'adhesions' => $adhesionRepository->findAll(),
         ]);
